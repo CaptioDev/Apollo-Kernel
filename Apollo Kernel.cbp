@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Apollo Kernel" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Apollo Kernel" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="-T scripts/link.ld" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="mkdir -p build" />
+					<Add after="i686-elf-objcopy -O binary build/kernel.elf build/kernel.bin" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Apollo Kernel" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="-T scripts/link.ld" />
+				</Linker>
+				<ExtraCommands>
+					<Add before="mkdir -p build" />
+					<Add after="i686-elf-objcopy -O binary build/kernel.elf build/kernel.bin" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Makefile" />
+		<Unit filename="include/gdt.h" />
+		<Unit filename="include/keyboard.h" />
+		<Unit filename="include/vga.h" />
+		<Unit filename="scripts/link.ld" />
+		<Unit filename="scripts/run.sh" />
+		<Unit filename="src/gdt.asm" />
+		<Unit filename="src/gdt.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/irq.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/kernel.asm" />
+		<Unit filename="src/kernel.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/keyboard.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/vga.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
